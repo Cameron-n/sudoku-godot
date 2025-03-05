@@ -1,0 +1,49 @@
+[gd_scene load_steps=2 format=3 uid="uid://i3ka15stut6u"]
+
+[ext_resource type="Script" path="res://grid.gd" id="1_ec1uu"]
+
+[node name="Sudoku" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="grid" type="GridContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 8.0
+columns = 9
+script = ExtResource("1_ec1uu")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Check" type="Button" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Check Solution"
+
+[node name="AutoSolve" type="Button" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "AutoSolve"
+
+[node name="New Game" type="Button" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "New Game"
+
+[connection signal="pressed" from="HBoxContainer/VBoxContainer/Check" to="HBoxContainer/grid" method="_on_check_pressed"]
+[connection signal="pressed" from="HBoxContainer/VBoxContainer/AutoSolve" to="HBoxContainer/grid" method="_on_auto_solve_pressed"]
+[connection signal="pressed" from="HBoxContainer/VBoxContainer/New Game" to="HBoxContainer/grid" method="_on_new_game_pressed"]

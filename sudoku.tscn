@@ -1,0 +1,133 @@
+[gd_scene load_steps=12 format=3 uid="uid://i3ka15stut6u"]
+
+[ext_resource type="Script" uid="uid://dx1c5qng6pwiq" path="res://grid.gd" id="1_ec1uu"]
+[ext_resource type="StyleBox" uid="uid://cx1rc410nxiyq" path="res://subgrid_line_color.tres" id="2_ryy2h"]
+
+[sub_resource type="Gradient" id="Gradient_ldahp"]
+offsets = PackedFloat32Array(0, 0.578261, 0.991304)
+colors = PackedColorArray(0.242749, 2.40654e-08, 0.116984, 1, 0.336708, 5.48859e-08, 0.171256, 1, 0.578497, 7.21961e-08, 0.310916, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_n0edn"]
+gradient = SubResource("Gradient_ldahp")
+fill_from = Vector2(0, 0.290598)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_q7n63"]
+texture = SubResource("GradientTexture2D_n0edn")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r65lp"]
+bg_color = Color(0.8, 0.136, 0.2688, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2k7p6"]
+bg_color = Color(0.61, 0.1037, 0.20496, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_utcqs"]
+bg_color = Color(0.705882, 0.117647, 0.235294, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mciyw"]
+bg_color = Color(0.136, 0.8, 0.445867, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ucn4t"]
+bg_color = Color(0.1037, 0.61, 0.339973, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ugo76"]
+bg_color = Color(0.117647, 0.705882, 0.392157, 1)
+
+[node name="Sudoku" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 4.0
+offset_bottom = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_q7n63")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="grid" type="GridContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 8.0
+columns = 9
+script = ExtResource("1_ec1uu")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Check" type="Button" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Check Solution"
+
+[node name="AutoSolve" type="Button" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/hover = SubResource("StyleBoxFlat_r65lp")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_2k7p6")
+theme_override_styles/normal = SubResource("StyleBoxFlat_utcqs")
+text = "AutoSolve"
+
+[node name="New Game" type="Button" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/hover = SubResource("StyleBoxFlat_mciyw")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ucn4t")
+theme_override_styles/normal = SubResource("StyleBoxFlat_ugo76")
+text = "New Game"
+
+[node name="PanelVerticalLeft" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.289
+anchor_right = 0.296
+anchor_bottom = 1.0
+offset_left = -0.928009
+offset_right = 0.00799561
+theme_override_styles/panel = ExtResource("2_ryy2h")
+
+[node name="PanelVerticalRight" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.587
+anchor_right = 0.595
+anchor_bottom = 1.0
+offset_left = -0.223999
+offset_right = 0.559937
+theme_override_styles/panel = ExtResource("2_ryy2h")
+
+[node name="PanelHorizontalUp" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.328
+anchor_right = 0.886
+anchor_bottom = 0.343
+offset_top = -0.544006
+offset_bottom = -0.264023
+theme_override_styles/panel = ExtResource("2_ryy2h")
+
+[node name="PanelHorizontalDown" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.659
+anchor_right = 0.885
+anchor_bottom = 0.674
+theme_override_styles/panel = ExtResource("2_ryy2h")
+
+[connection signal="pressed" from="HBoxContainer/VBoxContainer/Check" to="HBoxContainer/grid" method="_on_check_pressed"]
+[connection signal="pressed" from="HBoxContainer/VBoxContainer/AutoSolve" to="HBoxContainer/grid" method="_on_auto_solve_pressed"]
+[connection signal="pressed" from="HBoxContainer/VBoxContainer/New Game" to="HBoxContainer/grid" method="_on_new_game_pressed"]
