@@ -1,0 +1,62 @@
+[gd_scene load_steps=7 format=3 uid="uid://hoobhr7blexc"]
+
+[ext_resource type="Script" uid="uid://c43yjhymlacpm" path="res://test.gd" id="1_e1hgh"]
+[ext_resource type="Texture2D" uid="uid://rp3518h6a4pf" path="res://blank_tiny.svg" id="1_nx8la"]
+
+[sub_resource type="Theme" id="Theme_erl45"]
+
+[sub_resource type="Gradient" id="Gradient_pfjoc"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_0jqii"]
+gradient = SubResource("Gradient_pfjoc")
+fill_from = Vector2(1, 0)
+fill_to = Vector2(0.995726, 0.00854701)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_jtx8d"]
+texture = SubResource("GradientTexture2D_0jqii")
+modulate_color = Color(0.341176, 0.341176, 0.341176, 0.505882)
+
+[node name="NumberBox" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_e1hgh")
+
+[node name="SpinBox" type="SpinBox" parent="."]
+layout_mode = 0
+offset_left = 30.0
+offset_top = 21.0
+offset_right = 388.0
+offset_bottom = 236.0
+theme = SubResource("Theme_erl45")
+theme_override_constants/buttons_width = 1
+theme_override_icons/up_disabled = ExtResource("1_nx8la")
+theme_override_icons/down = ExtResource("1_nx8la")
+theme_override_icons/down_hover = ExtResource("1_nx8la")
+theme_override_icons/down_pressed = ExtResource("1_nx8la")
+theme_override_icons/down_disabled = ExtResource("1_nx8la")
+theme_override_icons/up_pressed = ExtResource("1_nx8la")
+theme_override_icons/up_hover = ExtResource("1_nx8la")
+theme_override_icons/up = ExtResource("1_nx8la")
+theme_override_icons/updown = ExtResource("1_nx8la")
+alignment = 1
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_left = -267.0
+offset_top = 39.0
+offset_right = -37.0
+offset_bottom = 254.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_jtx8d")
+
+[node name="LineEdit" type="LineEdit" parent="."]
+layout_mode = 0
+offset_left = -170.0
+offset_top = -82.0
+offset_right = -101.438
+offset_bottom = -51.0
+
+[connection signal="value_changed" from="SpinBox" to="." method="_on_spin_box_value_changed"]
