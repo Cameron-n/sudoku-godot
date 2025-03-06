@@ -54,9 +54,18 @@ theme_override_styles/panel = SubResource("StyleBoxTexture_jtx8d")
 
 [node name="LineEdit" type="LineEdit" parent="."]
 layout_mode = 0
-offset_left = -170.0
-offset_top = -82.0
-offset_right = -101.438
-offset_bottom = -51.0
+offset_left = -156.0
+offset_top = -74.0
+offset_right = -87.4375
+offset_bottom = -43.0
+theme_override_colors/clear_button_color_pressed = Color(0.666667, 0, 0, 1)
+theme_override_colors/clear_button_color = Color(0.569239, 0.224331, 0.520787, 1)
+theme_override_colors/selection_color = Color(0, 0.584314, 0, 1)
+theme_override_colors/caret_color = Color(0, 0, 0.929412, 1)
+theme_override_colors/font_placeholder_color = Color(0, 0.470588, 0, 1)
+theme_override_colors/font_outline_color = Color(0.401314, 0.429762, 0.543505, 1)
+theme_override_colors/font_selected_color = Color(0.54942, 0.759123, 0.934149, 1)
+theme_override_colors/font_uneditable_color = Color(0.378939, 0.276355, 0.0792609, 1)
+theme_override_colors/font_color = Color(0.449873, 0.528188, 0.434268, 1)
 
 [connection signal="value_changed" from="SpinBox" to="." method="_on_spin_box_value_changed"]
